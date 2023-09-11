@@ -1,0 +1,21 @@
+.jg-Tokens {
+  @include desktopOrWider {
+    width: 100%;
+  }
+
+  @include narrowerThanDesktop {
+    align-content: center;
+  }
+
+  display: grid;
+  gap: 8px;
+  grid-auto-rows: min-content;
+  -webkit-touch-callout: none;
+  user-select: none;
+
+  .jg-UniqueTokenField {
+    gap: var(--chakra-space-2);
+    grid-template-areas: "tokens button";
+    grid-template-columns: 72px 90px;
+  }
+}

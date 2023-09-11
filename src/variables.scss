@@ -1,0 +1,121 @@
+$jg-blue: #183e6f;
+$jg-red: #6e120b;
+
+$jg-light-blue: lighten($jg-blue, 30%);
+$jg-light-red: lighten($jg-red, 15%);
+
+:root {
+  --jg-blue: #{$jg-blue};
+  --jg-red: #{$jg-red};
+  --jg-light-blue: #{$jg-light-blue};
+  --jg-light-red: #{$jg-light-red};
+}
+
+/* Media Queries */
+$desktop: 1024px;
+$tablet: 768px;
+
+@mixin narrowerThanDesktop {
+  @media screen and (max-width: ($desktop - 1px)) {
+    @content;
+  }
+}
+
+@mixin narrowerThanTablet {
+  @media screen and (max-width: ($tablet - 1px)) {
+    @content;
+  }
+}
+
+@mixin narrowerThan570px {
+  @media screen and (max-width: 569px) {
+    @content;
+  }
+}
+
+@mixin desktopOrWider {
+  @media screen and (min-width: $desktop) {
+    @content;
+  }
+}
+
+@mixin tabletOrWider {
+  @media screen and (min-width: $tablet) {
+    @content;
+  }
+}
+
+@mixin tallerOrEqualTo700px {
+  @media screen and (min-height: 700px) {
+    @content;
+  }
+}
+
+@mixin narrowerThan($width) {
+  @media screen and (max-width: ($width - 1px)) {
+    @content;
+  }
+}
+
+@mixin widthOrWider($width) {
+  @media screen and (min-width: ($width)) {
+    @content;
+  }
+}
+
+@mixin betweenWidths($min, $max) {
+  @media screen and (min-width: $min) and (max-width: $max) {
+    @content;
+  }
+}
+
+/* Utility Mixins */
+
+@mixin floating-labels-sm {
+  input:not(:placeholder-shown) + label,
+  .chakra-select__wrapper + label,
+  :focus-within label {
+    transform: scale(0.85) translateY(-20px) !important;
+  }
+
+  .chakra-form__label {
+    font-size: var(--chakra-fontSizes-sm);
+    margin: var(--chakra-space-1-5);
+  }
+
+  .chakra-select {
+    border-radius: 0;
+    padding-inline-start: var(--chakra-space-1-5);
+    text-align: center;
+  }
+}
+
+@mixin is-positive-button {
+  .is-positive {
+    background-color: $jg-blue;
+
+    &:hover {
+      background-color: lighten($jg-blue, 10%);
+    }
+  }
+}
+
+@mixin is-positive-button {
+  .is-positive {
+    background-color: $jg-blue;
+
+    &:hover {
+      background-color: lighten($jg-blue, 10%);
+    }
+  }
+}
+
+@mixin is-negative-button {
+  .is-negative {
+    background-color: $jg-red;
+
+    &:hover {
+      background-color: lighten($jg-red, 10%);
+    }
+  }
+}

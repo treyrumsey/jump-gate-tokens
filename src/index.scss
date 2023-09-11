@@ -1,0 +1,75 @@
+@import url("../fonts/exo-2.css");
+@import url("../fonts/oxanium.css");
+
+@import "../node_modules/augmented-ui/augmented-ui.min.css";
+
+@import "variables.scss";
+
+@import "components/forms/TokenField/TokenField.scss";
+
+@import "components/typography/MarkdownView/MarkdownView.scss";
+@import "components/typography/MarkdownColorOverrides/MarkdownColorOverrides.scss";
+
+// @import "features/Character/CharacterSheet/CharacterSheet.scss";
+@import "features/Character/CharacterSheet/Tokens/Tokens.scss";
+
+body {
+  font-family: "Exo 2", sans-serif !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+  input {
+    border-radius: 0 !important;
+  }
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+.chakra-card {
+  textarea {
+    border-color: var(--chakra-colors-chakra-border-color);
+
+    &::placeholder {
+      color: var(--chakra-colors-whiteAlpha-600);
+    }
+  }
+
+  .chakra-form-control {
+    .chakra-form__label {
+      background-color: var(--card-bg);
+    }
+  }
+}
+
+.chakra-modal__content {
+  @include desktopOrWider {
+    margin: 2rem 0;
+    max-width: var(--chakra-sizes-4xl);
+  }
+
+  @include is-positive-button;
+
+  background-color: var(--chakra-colors-chakra-body-bg) !important;
+
+  margin: 1rem;
+
+  min-width: fit-content;
+}
+
+.augmented {
+  border: 0;
+  &[data-augmented-ui] {
+    --aug-tl: 12px;
+    --aug-br: 12px;
+    --aug-bl: var(--chakra-radii-md);
+    --aug-tr: var(--chakra-radii-md);
+  }
+  &[data-augmented-ui~="border"] {
+    --aug-border: initial;
+    --aug-border-all: 1px;
+    --aug-border-bg: var(--chakra-colors-chakra-border-color);
+  }
+}
