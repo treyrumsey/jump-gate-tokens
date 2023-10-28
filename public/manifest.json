@@ -6,12 +6,5 @@
   "homepage_url": "https://jump-gate.net",
   "icon": "/logo.svg",
   "background_url": "/background.html",
-  "description": "Add token tracking for Mythic Space",
-  "action": {
-    "title": "Jump Gate",
-    "icon": "/logo.svg",
-    "popover": "https://jump-gate.net",
-    "height": 800,
-    "width": 600
-  }
+  "description": "Add token tracking for Mythic Space"
 }
