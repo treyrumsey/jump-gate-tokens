@@ -3,7 +3,7 @@ import { FormProvider, useForm } from "react-hook-form";
 
 import { useCharacterContext } from "~/context/CharacterProvider";
 import { CharacterListener } from "~/features/Character/CharacterSheet/CharacterListener";
-import { Tokens } from "~/features/Character/CharacterSheet/Tokens/Tokens";
+import { Tokens } from "~/features/Character/CharacterSheet/Tokens";
 
 export const CharacterSheet = () => {
   const { character } = useCharacterContext();

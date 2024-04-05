@@ -36,15 +36,12 @@
     "build": "tsc && vite build",
     "host": "vite --host",
     "serve": "vite preview --host",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
     "lint": "eslint --ext .js,.ts,.jsx,.tsx src",
     "format": "prettier --write './**/*.{js,jsx,ts,tsx,scss}'"
   },
   "eslintConfig": {
     "extends": [
-      "react-app",
-      "react-app/jest"
+      "react-app"
     ]
   },
   "browserslist": {
