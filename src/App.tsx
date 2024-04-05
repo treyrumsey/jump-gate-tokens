@@ -1,16 +1,13 @@
 import * as React from "react";
 
 import { ChakraProvider, useColorMode } from "@chakra-ui/react";
-import OBR, { Image } from "@owlbear-rodeo/sdk";
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
-import { getDatabase, set } from "firebase/database";
-import { useRegisterSW } from "virtual:pwa-register/react";
+import { getDatabase } from "firebase/database";
 
 import { CharacterProvider } from "~/context/CharacterProvider";
 import { ContextWrapper } from "~/context/ContextWrapper";
 import { CharacterSheet } from "~/features/Character/CharacterSheet/CharacterSheet";
-import CharacterTokens from "~/features/Character/CharacterSheet/Tokens/CharacterTokens";
 import { initializeMetaTags } from "~/lib/utilities/MetaTagUtilites";
 import { theme } from "~/theme";
 
@@ -28,8 +25,6 @@ export const auth = getAuth(firebaseApp);
 export const db = getDatabase(firebaseApp);
 
 function App() {
-  useRegisterSW();
-
   React.useEffect(() => {
     initializeMetaTags();
   }, []);

@@ -3,7 +3,7 @@ import { useForm, FormProvider } from "react-hook-form";
 
 import { CharacterListener } from "~/features/Character/CharacterSheet/CharacterListener";
 import { Tokens } from "~/features/Character/CharacterSheet/Tokens/Tokens";
-import { Character, buildCharacter } from "~/models/Character.model";
+import { buildCharacter } from "~/models/Character.model";
 
 const CharacterTokens = () => {
   const useFormMethods = useForm({

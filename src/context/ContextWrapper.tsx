@@ -17,6 +17,7 @@ export const ContextWrapper = (props: PropsWithChildren) => {
       OBR.onReady(async () => {
         setReady(true);
         setRole(await OBR.player.getRole());
+        console.log("OBR is Ready");
       });
     }
   }, []);

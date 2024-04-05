@@ -1,16 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useRef, useState } from "react";
 
-import {
-  Button,
-  Popover,
-  PopoverArrow,
-  PopoverBody,
-  PopoverContent,
-  PopoverTrigger,
-  Portal,
-  useDisclosure,
-} from "@chakra-ui/react";
+import { Button, useDisclosure } from "@chakra-ui/react";
 
 import { isMobileAppleDevice } from "~/lib/utilities/MetaTagUtilites";
 
@@ -27,7 +18,7 @@ const TokenFieldButton = ({
   description,
   gainToken,
 }: TokenFieldButtonProps) => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { onOpen, onClose } = useDisclosure();
   /** Safari has an issue with its -webkit-backdrop-filters on lazily-loaded
    *  content. Adding it after the content is rendered fixes the issue.
    */

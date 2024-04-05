@@ -2,9 +2,9 @@ import OBR from "@owlbear-rodeo/sdk";
 
 import { getPluginId } from "~/lib/utilities/GetPluginId";
 
-import icon from "./logo.svg";
+import icon from "./status.svg";
 
-OBR.onReady(() => {
+const setupContextMenu = async () => {
   OBR.contextMenu.create({
     id: getPluginId("context-menu"),
     icons: [
@@ -31,7 +31,6 @@ OBR.onReady(() => {
         height: 324,
         width: 286,
         // anchorOrigin: undefined,
-
         anchorElementId: elementId,
         // anchorReference: "POSITION",
         // transformOrigin: { horizontal: "CENTER", vertical: "CENTER" },
@@ -39,4 +38,8 @@ OBR.onReady(() => {
       });
     },
   });
+};
+
+OBR.onReady(async () => {
+  await setupContextMenu();
 });
