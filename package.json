@@ -1,6 +1,7 @@
 {
   "name": "jump-gate-tokens",
   "version": "0.1.0",
+  "type": "module",
   "private": true,
   "dependencies": {
     "@chakra-ui/icons": "^2.0.10",
