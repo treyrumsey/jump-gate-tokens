@@ -5,9 +5,9 @@ import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getDatabase } from "firebase/database";
 
-import { CharacterProvider } from "~/context/CharacterProvider";
 import { ContextWrapper } from "~/context/ContextWrapper";
-import { CharacterSheet } from "~/features/Character/CharacterSheet/CharacterSheet";
+import TokensProvider from "~/context/TokensProvider";
+import { Tokens } from "~/features/Character/CharacterSheet/Tokens";
 import { initializeMetaTags } from "~/lib/utilities/MetaTagUtilites";
 import { theme } from "~/theme";
 
@@ -29,16 +29,27 @@ function App() {
     initializeMetaTags();
   }, []);
 
+  document.documentElement.style.colorScheme = "none";
+  document.documentElement.setAttribute("data-theme", "none");
+
   return (
     <ChakraProvider data-theme="dark" theme={theme}>
       <ForceDarkMode>
         <ContextWrapper>
-          <CharacterProvider>
+          {/* <CharacterProvider>
             <CharacterSheet />
-          </CharacterProvider>
+          </CharacterProvider> */}
+          <TokensProvider>
+            <Tokens />
+          </TokensProvider>
         </ContextWrapper>
       </ForceDarkMode>
     </ChakraProvider>
+    // <>
+    //   <NewTokenProvider>
+    //     <NewTokens />
+    //   </NewTokenProvider>
+    // </>
   );
 }
 

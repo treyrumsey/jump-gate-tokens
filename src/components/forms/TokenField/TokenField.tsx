@@ -4,6 +4,8 @@ import { useFormContext, useWatch } from "react-hook-form";
 import { Avatar, AvatarGroup, FormControl, Input } from "@chakra-ui/react";
 
 import TokenFieldButton from "~/components/forms/TokenField/TokenFieldButton/TokenFieldButton";
+import { useTokensContext } from "~/context/TokensProvider";
+import { cn } from "~/lib/utils";
 
 interface TokenFieldProps {
   isUncapped?: boolean;
@@ -12,6 +14,7 @@ interface TokenFieldProps {
   negativeName: string;
   negativeDescription: React.ReactNode;
   show?: boolean;
+  disabled: boolean;
 }
 
 const TokenField = ({
@@ -20,53 +23,45 @@ const TokenField = ({
   positiveDescription,
   negativeName,
   negativeDescription,
-  show = true,
+  disabled,
 }: TokenFieldProps) => {
-  const tokenName = `tokens.${positiveName + negativeName}`;
-  const { register, setValue, getValues } = useFormContext();
-  const [tokenValue, setTokenValue] = useState<number>(
-    getValues(tokenName) ?? 0
-  );
+  // const tokenName = `tokens.${positiveName + negativeName}`;
+  const { tokens, setTokens } = useTokensContext();
+
+  const name = (positiveName + negativeName) as keyof typeof tokens;
+  const tokenValue = tokens[name];
+  // const [tokenValue, setTokenValue] = useState<number>(0);
 
   const max = isUncapped ? 30 : 3;
   const min = isUncapped ? -30 : -3;
-
-  const tokenWatch = useWatch({ name: tokenName });
-
-  useEffect(() => {
-    setTokenValue(tokenWatch);
-  }, [tokenWatch]);
 
   const gainPositiveToken = () => {
     if (tokenValue === max) return;
 
     const value = tokenValue + 1;
 
-    setTokenValue(value);
-    setValue(tokenName, value);
+    setTokens((prev) => ({ ...prev, [name]: value }));
   };
 
   const gainNegativeToken = () => {
     if (tokenValue === min) return;
 
     const value = tokenValue - 1;
-    setTokenValue(value);
-    setValue(tokenName, value);
+
+    setTokens((prev) => ({ ...prev, [name]: value }));
   };
 
   const spendToken = () => {
     if (tokenValue > 0) {
       const value = tokenValue - 1;
 
-      setTokenValue(value);
-      setValue(tokenName, value);
+      setTokens((prev) => ({ ...prev, [name]: value }));
     }
 
     if (tokenValue < 0) {
       const value = tokenValue + 1;
 
-      setTokenValue(value);
-      setValue(tokenName, value);
+      setTokens((prev) => ({ ...prev, [name]: value }));
     }
   };
 
@@ -103,7 +98,7 @@ const TokenField = ({
   };
 
   return (
-    <FormControl className="jg-TokenField" display={show ? "grid" : "none"}>
+    <div className="jg-TokenField grid">
       <TokenFieldButton
         className="jg-TokenField__button is-positive"
         name={positiveName}
@@ -111,7 +106,9 @@ const TokenField = ({
         gainToken={gainPositiveToken}
       />
       <button
-        className="jg-TokenField__tokens"
+        className={cn("jg-TokenField__tokens", {
+          "opacity-40 cursor-not-allowed": disabled,
+        })}
         disabled={tokenValue === 0}
         type="button"
         onClick={spendToken}
@@ -139,12 +136,7 @@ const TokenField = ({
         description={negativeDescription}
         gainToken={gainNegativeToken}
       />
-      <Input
-        id={tokenName}
-        display="none"
-        {...register(tokenName, { valueAsNumber: true })}
-      />
-    </FormControl>
+    </div>
   );
 };
 

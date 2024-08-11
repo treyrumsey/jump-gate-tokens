@@ -1,15 +1,16 @@
 import React, { PropsWithChildren, useEffect, useState } from "react";
 
-import OBR from "@owlbear-rodeo/sdk";
+import OBR, { Item } from "@owlbear-rodeo/sdk";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 import { PlayerContext, PlayerContextType } from "~/context/PlayerContext";
 import { PluginGate } from "~/context/PluginGateContext";
-import { Character } from "~/models/Character.model";
 
 export const ContextWrapper = (props: PropsWithChildren) => {
   const [role, setRole] = useState<string | null>(null);
   const [ready, setReady] = useState<boolean>(false);
+  const [currentSelection, setCurrentSelection] = useState<string[]>();
+  const [selectedItem, setSelectedItem] = useState<Item>();
   const queryClient = new QueryClient();
 
   useEffect(() => {
@@ -22,7 +23,36 @@ export const ContextWrapper = (props: PropsWithChildren) => {
     }
   }, []);
 
-  const playerContext: PlayerContextType = { role: role };
+  useEffect(() => {
+    if (ready && role !== null) {
+      OBR.player.onChange((player) => setCurrentSelection(player.selection));
+    }
+  }, [ready, role]);
+
+  useEffect(() => {
+    if (currentSelection && currentSelection.length === 1) {
+      const selection = currentSelection[0];
+      OBR.scene.items.getItems([selection]).then((items) => {
+        if (items.length > 0) {
+          const item = items[0];
+          setSelectedItem(item);
+        }
+      });
+    } else {
+      setSelectedItem(undefined);
+    }
+  }, [currentSelection]);
+
+  // useEffect(() => {
+  //   if (selectedItem?.layer === "CHARACTER") {
+  //     console.log("selectedItem", selectedItem);
+  //   }
+  // }, [selectedItem]);
+
+  const playerContext: PlayerContextType = {
+    role: role,
+    item: selectedItem,
+  };
 
   if (ready) {
     return (

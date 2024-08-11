@@ -5,5 +5,12 @@
   "author": "Trey Rumsey",
   "description": "Add token tracking for Mythic Space",
   "icon": "/logo.svg",
-  "background_url": "/background.html"
+  "background_url": "/background.html",
+  "action": {
+    "title": "Jump Gate Tokens",
+    "icon": "/logo.svg",
+    "popover": "/index.html",
+    "height": 344,
+    "width": 300
+  }
 }

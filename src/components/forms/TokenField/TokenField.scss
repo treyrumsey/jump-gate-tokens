@@ -63,6 +63,15 @@
   }
 }
 
+.jg-NewTokenField {
+  align-content: space-between;
+  display: grid;
+  gap: var(--chakra-space-2);
+  grid-template-areas: "positiveButton tokens negativeButton";
+  grid-template-columns: 90px 72px 90px;
+  justify-content: center;
+}
+
 .webkit-backdrop-blur {
   -webkit-backdrop-filter: blur(4px);
   backdrop-filter: blur(4px);

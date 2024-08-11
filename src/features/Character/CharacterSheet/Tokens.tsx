@@ -1,22 +1,17 @@
 import React from "react";
-import { useFormContext } from "react-hook-form";
 
-import { Box, Button } from "@chakra-ui/react";
-
+import { StunnedTokenField } from "~/components/forms/TokenField/StunnedTokenField";
 import TokenField from "~/components/forms/TokenField/TokenField";
-import UniqueTokenField, {
-  TokenType,
-} from "~/components/forms/TokenField/UniqueTokenField/UniqueTokenField";
-import {
-  STUNNED_TOKEN_DESCRIPTION,
-  TOKEN_DATA,
-} from "~/components/ui/TokenData/TokenData";
+import { TOKEN_DATA } from "~/components/ui/TokenData/TokenData";
+import { usePlayerContext } from "~/context/PlayerContext";
 
 export const Tokens = () => {
-  const { setValue } = useFormContext();
+  const { item } = usePlayerContext();
+
+  const disabled = !(item?.layer === "CHARACTER");
 
   return (
-    <div className="jg-Tokens">
+    <fieldset disabled={disabled} className="jg-Tokens p-4">
       {TOKEN_DATA.map((tokenPair) => {
         const {
           positiveName,
@@ -35,31 +30,11 @@ export const Tokens = () => {
             positiveDescription={positiveDescription}
             negativeDescription={negativeDescription}
             show
+            disabled={disabled}
           />
         );
       })}
-      <Box display="flex" justifyContent="center" gap="2">
-        <Button
-          size="sm"
-          width={"90px"}
-          onClick={() => {
-            TOKEN_DATA.forEach((pair) =>
-              setValue(`tokens.${pair.positiveName + pair.negativeName}`, 0)
-            );
-            setValue("tokens.stunned", 0);
-          }}
-        >
-          Clear Tokens
-        </Button>
-        <UniqueTokenField
-          max={3}
-          name={"Stunned"}
-          show
-          tokenId={"tokens.stunned"}
-          type={TokenType.Negative}
-          description={STUNNED_TOKEN_DESCRIPTION}
-        />
-      </Box>
-    </div>
+      <StunnedTokenField />
+    </fieldset>
   );
 };

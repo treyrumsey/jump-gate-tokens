@@ -5,6 +5,13 @@ const activeLabelStyles = {
 };
 
 export const theme = extendTheme({
+  styles: {
+    global: () => ({
+      body: {
+        bg: "",
+      },
+    }),
+  },
   components: {
     Form: {
       variants: {

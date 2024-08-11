@@ -1,7 +1,10 @@
 import React, { useContext } from "react";
 
+import { Item } from "@owlbear-rodeo/sdk";
+
 export type PlayerContextType = {
   role: string | null;
+  item?: Item;
 };
 
 export const PlayerContext = React.createContext<PlayerContextType | null>(

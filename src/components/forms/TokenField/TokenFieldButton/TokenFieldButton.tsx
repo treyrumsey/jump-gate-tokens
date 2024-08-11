@@ -2,7 +2,9 @@
 import React, { useRef, useState } from "react";
 
 import { Button, useDisclosure } from "@chakra-ui/react";
+// import { useDisclosure } from "@chakra-ui/react";
 
+// import { Button } from "~/components/ui/button";
 import { isMobileAppleDevice } from "~/lib/utilities/MetaTagUtilites";
 
 type TokenFieldButtonProps = {
@@ -79,7 +81,6 @@ const TokenFieldButton = ({
       title={`Gain ${name} token`}
       aria-label={`Gain ${name} token`}
       size="sm"
-      width="100%"
       onClick={() => {
         if (!usingTouch.current) {
           gainToken();
