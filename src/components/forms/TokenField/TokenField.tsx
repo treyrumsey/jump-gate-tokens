@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { useFormContext, useWatch } from "react-hook-form";
+import React from "react";
 
-import { Avatar, AvatarGroup, FormControl, Input } from "@chakra-ui/react";
+import { Avatar, AvatarGroup } from "@chakra-ui/react";
 
 import TokenFieldButton from "~/components/forms/TokenField/TokenFieldButton/TokenFieldButton";
 import { useTokensContext } from "~/context/TokensProvider";
@@ -25,12 +24,10 @@ const TokenField = ({
   negativeDescription,
   disabled,
 }: TokenFieldProps) => {
-  // const tokenName = `tokens.${positiveName + negativeName}`;
   const { tokens, setTokens } = useTokensContext();
 
   const name = (positiveName + negativeName) as keyof typeof tokens;
   const tokenValue = tokens[name];
-  // const [tokenValue, setTokenValue] = useState<number>(0);
 
   const max = isUncapped ? 30 : 3;
   const min = isUncapped ? -30 : -3;

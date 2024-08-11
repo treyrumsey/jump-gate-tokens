@@ -13,20 +13,20 @@ import {
 import { getPluginId } from "~/lib/utilities/GetPluginId";
 import { TokensModel } from "~/models/Character.model";
 
-const getPosition = (item: Image, dpi: number) => {
-  const dpiScale = dpi / item.grid.dpi;
-  const width = item.image.width * dpiScale;
-  const height = item.image.height * dpiScale;
-  const offsetX = (item.grid.offset.x / item.image.width) * width;
-  const offsetY = (item.grid.offset.y / item.image.height) * height;
-  // Apply image offset and offset circle position so the origin is the top left
-  const position = {
-    x: item.position.x - offsetX + width / 2,
-    y: item.position.y - offsetY + height / 2,
-  };
+// const getPosition = (item: Image, dpi: number) => {
+//   const dpiScale = dpi / item.grid.dpi;
+//   const width = item.image.width * dpiScale;
+//   const height = item.image.height * dpiScale;
+//   const offsetX = (item.grid.offset.x / item.image.width) * width;
+//   const offsetY = (item.grid.offset.y / item.image.height) * height;
+//   // Apply image offset and offset circle position so the origin is the top left
+//   const position = {
+//     x: item.position.x - offsetX + width / 2,
+//     y: item.position.y - offsetY + height / 2,
+//   };
 
-  return position;
-};
+//   return position;
+// };
 
 export function buildJumpGateToken(
   item: Image,
@@ -226,20 +226,20 @@ const getTokensText = (tokens: TokensModel) => {
   return strings.join("\n");
 };
 
-function getTextHeight(text: string, fontSize: string): number {
-  const canvas = document.createElement("canvas");
-  const ctx = canvas.getContext("2d");
+// function getTextHeight(text: string, fontSize: string): number {
+//   const canvas = document.createElement("canvas");
+//   const ctx = canvas.getContext("2d");
 
-  if (!ctx) {
-    throw new Error("Canvas 2D context is not supported.");
-  }
+//   if (!ctx) {
+//     throw new Error("Canvas 2D context is not supported.");
+//   }
 
-  ctx.font = fontSize;
-  const textMetrics = ctx.measureText(text);
-  const height =
-    textMetrics.actualBoundingBoxAscent + textMetrics.actualBoundingBoxDescent;
-  return height;
-}
+//   ctx.font = fontSize;
+//   const textMetrics = ctx.measureText(text);
+//   const height =
+//     textMetrics.actualBoundingBoxAscent + textMetrics.actualBoundingBoxDescent;
+//   return height;
+// }
 
 export const getImageBounds = async (item: Image) => {
   const dpi = await OBR.scene.grid.getDpi();

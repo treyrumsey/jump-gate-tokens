@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 import { Avatar, AvatarGroup, Button } from "@chakra-ui/react";
 

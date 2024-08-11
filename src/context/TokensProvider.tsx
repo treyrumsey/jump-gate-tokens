@@ -70,7 +70,7 @@ const TokensProvider = ({ children }: TokensProviderProps) => {
     document.documentElement.style.colorScheme = "none";
     document.documentElement.setAttribute("data-theme", "none");
     if (item?.layer === "CHARACTER") {
-      console.log("item useEffect start", item);
+      // console.log("item useEffect start", item);
       const getMetadata = async () => {
         const metadata = item.metadata[getPluginId("metadata")];
         if (metadata) {
@@ -94,7 +94,7 @@ const TokensProvider = ({ children }: TokensProviderProps) => {
             // console.log("updateItems end");
           });
         }
-        console.log("tokens metadata", metadata);
+        // console.log("tokens metadata", metadata);
       };
 
       getMetadata();
@@ -116,7 +116,7 @@ const TokensProvider = ({ children }: TokensProviderProps) => {
     const updateTokens = async () => {
       if (item?.layer !== "CHARACTER") return;
 
-      console.log("tokens useEffect", tokens);
+      // console.log("tokens useEffect", tokens);
 
       if (deepEquals(tokens, item.metadata[getPluginId("metadata")])) return;
 

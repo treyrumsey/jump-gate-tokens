@@ -36,20 +36,12 @@ function App() {
     <ChakraProvider data-theme="dark" theme={theme}>
       <ForceDarkMode>
         <ContextWrapper>
-          {/* <CharacterProvider>
-            <CharacterSheet />
-          </CharacterProvider> */}
           <TokensProvider>
             <Tokens />
           </TokensProvider>
         </ContextWrapper>
       </ForceDarkMode>
     </ChakraProvider>
-    // <>
-    //   <NewTokenProvider>
-    //     <NewTokens />
-    //   </NewTokenProvider>
-    // </>
   );
 }
 
